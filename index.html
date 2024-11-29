@@ -5,14 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multiplicación Interactiva - Selección de Tablas</title>
     <style>
+        /* Estilos generales */
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 20px;
         }
+
         h1 {
             margin-bottom: 40px;
         }
+
+        /* Estilo para el contenedor de selección */
+        #selectionScreen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 600px;
+        }
+
+        .table-button {
+            width: 150px;
+            padding: 15px;
+            font-size: 18px;
+            cursor: pointer;
+            border: 2px solid #007BFF;
+            border-radius: 10px;
+            background-color: #E0F7FA;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .table-button:hover {
+            background-color: #007BFF;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Estilos de cronómetro y puntaje */
+        #timer, #score {
+            position: absolute;
+            top: 10px;
+            font-size: 18px;
+        }
+
+        #timer {
+            left: 10px;
+        }
+
+        #score {
+            right: 10px;
+        }
+
+        /* Estilos de las dianas */
         .targets {
             display: flex;
             justify-content: center;
@@ -20,6 +71,7 @@
             flex-wrap: wrap;
             margin-top: 20px;
         }
+
         .target {
             width: 100px;
             height: 100px;
@@ -32,47 +84,28 @@
             font-weight: bold;
             cursor: pointer;
         }
+
         #feedback {
             margin-top: 20px;
             font-size: 18px;
-        }
-        #timer, #score {
-            position: absolute;
-            top: 10px;
-            font-size: 18px;
-        }
-        #timer {
-            left: 10px;
-        }
-        #score {
-            right: 10px;
-        }
-        #selectionScreen {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .table-button {
-            margin: 10px;
-            padding: 10px 20px;
-            font-size: 18px;
-            cursor: pointer;
         }
     </style>
 </head>
 <body>
     <div id="selectionScreen">
         <h1>Seleccione la tabla que desea repasar:</h1>
-        <button class="table-button" onclick="startGame(1)">Tabla del 1</button>
-        <button class="table-button" onclick="startGame(2)">Tabla del 2</button>
-        <button class="table-button" onclick="startGame(3)">Tabla del 3</button>
-        <button class="table-button" onclick="startGame(4)">Tabla del 4</button>
-        <button class="table-button" onclick="startGame(5)">Tabla del 5</button>
-        <button class="table-button" onclick="startGame(6)">Tabla del 6</button>
-        <button class="table-button" onclick="startGame(7)">Tabla del 7</button>
-        <button class="table-button" onclick="startGame(8)">Tabla del 8</button>
-        <button class="table-button" onclick="startGame(9)">Tabla del 9</button>
-        <button class="table-button" onclick="startGame('mixed')">Tablas Mixtas</button>
+        <div class="button-container">
+            <button class="table-button" onclick="startGame(1)">Tabla del 1</button>
+            <button class="table-button" onclick="startGame(2)">Tabla del 2</button>
+            <button class="table-button" onclick="startGame(3)">Tabla del 3</button>
+            <button class="table-button" onclick="startGame(4)">Tabla del 4</button>
+            <button class="table-button" onclick="startGame(5)">Tabla del 5</button>
+            <button class="table-button" onclick="startGame(6)">Tabla del 6</button>
+            <button class="table-button" onclick="startGame(7)">Tabla del 7</button>
+            <button class="table-button" onclick="startGame(8)">Tabla del 8</button>
+            <button class="table-button" onclick="startGame(9)">Tabla del 9</button>
+            <button class="table-button" onclick="startGame('mixed')">Tablas Mixtas</button>
+        </div>
     </div>
 
     <div id="gameScreen" style="display:none;">
