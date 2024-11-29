@@ -172,9 +172,10 @@
             const options = new Set();
             options.add(correctAnswer); // Add correct answer first
 
-            // Generate unique incorrect options
+            // Generate unique incorrect options that are multiples of the table
             while (options.size < 4) {
-                const option = Math.floor(Math.random() * 100);
+                const multiplier = Math.floor(Math.random() * 10) + 1; // Random multiplier
+                const option = num1 * multiplier;
                 options.add(option);
             }
 
