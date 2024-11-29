@@ -98,9 +98,16 @@ h1 {
     transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
+/* Cambios cuando el círculo es presionado */
+.target:active {
+    transform: scale(0.9); /* Reduce ligeramente el tamaño al presionarlo */
+    background: radial-gradient(circle, darkred, white); /* Oscurece un poco el color */
+}
+
+/* Cambios al pasar el mouse */
 .target:hover {
-    transform: scale(1.1);
-    background: radial-gradient(circle, darkred, white);
+    transform: scale(1.1); /* Aumenta ligeramente el tamaño */
+    background: radial-gradient(circle, darkred, white); /* Cambia el color al pasar el mouse */
 }
 
 /* Botón de retorno */
