@@ -9,18 +9,21 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
         }
 
         h1 {
             margin-bottom: 40px;
         }
 
-        /* Estilo para el contenedor de selección */
+        /* Contenedor principal */
         #selectionScreen {
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
 
         .button-container {
@@ -48,7 +51,7 @@
             transform: scale(1.1);
         }
 
-        /* Estilos de cronómetro y puntaje */
+        /* Estilos de cronómetro, puntaje y botón de regreso */
         #timer, #score {
             position: absolute;
             top: 10px;
@@ -61,6 +64,22 @@
 
         #score {
             right: 10px;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #FFCDD2;
+            border: 2px solid #F44336;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #F44336;
+            color: white;
         }
 
         /* Estilos de las dianas */
@@ -119,6 +138,7 @@
             <div class="target" onclick="checkAnswer(this)" id="target4"></div>
         </div>
         <p id="feedback"></p>
+        <button class="back-button" onclick="returnToMenu()">Regresar al Menú</button>
     </div>
 
     <!-- Audio files -->
@@ -149,21 +169,25 @@
             num2 = Math.floor(Math.random() * 10) + 1;
             correctAnswer = num1 * num2;
 
-            const options = [
-                correctAnswer,
-                correctAnswer + Math.floor(Math.random() * 10) + 1,
-                correctAnswer - Math.floor(Math.random() * 5) - 1,
-                correctAnswer + Math.floor(Math.random() * 5) + 1
-            ].sort(() => Math.random() - 0.5);
+            const options = new Set();
+            options.add(correctAnswer); // Add correct answer first
+
+            // Generate unique incorrect options
+            while (options.size < 4) {
+                const option = Math.floor(Math.random() * 100);
+                options.add(option);
+            }
+
+            const optionsArray = Array.from(options).sort(() => Math.random() - 0.5);
 
             document.getElementById('num1').textContent = num1;
             document.getElementById('num2').textContent = num2;
 
             // Assign options to targets
-            document.getElementById('target1').textContent = options[0];
-            document.getElementById('target2').textContent = options[1];
-            document.getElementById('target3').textContent = options[2];
-            document.getElementById('target4').textContent = options[3];
+            document.getElementById('target1').textContent = optionsArray[0];
+            document.getElementById('target2').textContent = optionsArray[1];
+            document.getElementById('target3').textContent = optionsArray[2];
+            document.getElementById('target4').textContent = optionsArray[3];
 
             document.getElementById('feedback').textContent = ''; // Clear feedback
         }
@@ -201,9 +225,15 @@
             }, 1000);
         }
 
+        function returnToMenu() {
+            clearInterval(timer); // Stop the timer
+            document.getElementById('gameScreen').style.display = 'none';
+            document.getElementById('selectionScreen').style.display = 'flex';
+        }
+
         function endGame() {
             document.getElementById('gameScreen').style.display = 'none';
-            document.getElementById('selectionScreen').style.display = 'block';
+            document.getElementById('selectionScreen').style.display = 'flex';
             alert(`¡Juego Terminado! Puntaje final: ${score}`);
         }
     </script>
