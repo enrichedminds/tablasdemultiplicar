@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Pantalla de selección -->
     <div id="selectionScreen">
         <h1>Seleccione la tabla que desea repasar:</h1>
         <div class="button-container">
@@ -23,7 +24,8 @@
         </div>
     </div>
 
-    <div id="gameScreen" style="display:none;">
+    <!-- Pantalla del juego -->
+    <div id="gameScreen" style="display: none;">
         <div id="timer">Tiempo: 60s</div>
         <div id="score">Puntaje: 0</div>
         <h1>¿Cuánto es <span id="num1"></span> x <span id="num2"></span>?</h1>
@@ -37,10 +39,11 @@
         <button class="back-button" onclick="returnToMenu()">Regresar al Menú</button>
     </div>
 
-    <!-- Audio files -->
+    <!-- Archivos de audio -->
     <audio id="correctSound" src="https://www.soundjay.com/button/beep-07.mp3"></audio>
     <audio id="incorrectSound" src="https://www.soundjay.com/button/beep-10.mp3"></audio>
 
+    <!-- Archivo JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
