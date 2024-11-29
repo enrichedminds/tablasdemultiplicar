@@ -4,6 +4,10 @@ body {
     text-align: center;
     margin: 0;
     padding: 0;
+    height: 100vh; /* Asegura que el cuerpo ocupe toda la altura de la ventana */
+    display: flex; /* Centra verticalmente el contenido global */
+    justify-content: center; /* Centra horizontalmente el contenido global */
+    align-items: center; /* Centra verticalmente el contenido global */
 }
 
 h1 {
@@ -11,14 +15,17 @@ h1 {
 }
 
 /* Contenedor principal */
-#selectionScreen {
+#selectionScreen,
+#gameScreen {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    width: 100%; /* Asegura que ocupa todo el ancho */
+    height: 100%; /* Asegura que ocupa toda la altura */
 }
 
+/* Botones de selección */
 .button-container {
     display: flex;
     flex-wrap: wrap;
@@ -100,13 +107,4 @@ h1 {
 #feedback {
     margin-top: 20px;
     font-size: 18px;
-}
-
-/* Centralizar la pantalla de práctica */
-#gameScreen {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
 }
