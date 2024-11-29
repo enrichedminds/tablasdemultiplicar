@@ -1,17 +1,22 @@
 let num1, num2, correctAnswer;
-let score = 0;
-let timeRemaining = 60; // Set time limit (in seconds)
+let score = 0; // Puntaje total
+let timeRemaining = 60; // Tiempo límite en segundos
 let timer;
 let selectedTable;
+let correctAnswers = 0; // Contador de respuestas correctas
+let incorrectAnswers = 0; // Contador de respuestas incorrectas
 
 function startGame(table) {
     selectedTable = table;
     score = 0;
     timeRemaining = 60;
+    correctAnswers = 0; // Reinicia contador de correctas
+    incorrectAnswers = 0; // Reinicia contador de incorrectas
     document.getElementById('selectionScreen').style.display = 'none';
     document.getElementById('gameScreen').style.display = 'block';
     document.getElementById('score').textContent = `Puntaje: ${score}`;
     document.getElementById('timer').textContent = `Tiempo: ${timeRemaining}s`;
+    document.getElementById('resultScreen').style.display = 'none'; // Oculta pantalla de resultados
     generateQuestion();
     startTimer();
 }
@@ -22,11 +27,11 @@ function generateQuestion() {
     correctAnswer = num1 * num2;
 
     const options = new Set();
-    options.add(correctAnswer); // Add correct answer first
+    options.add(correctAnswer); // Agrega la respuesta correcta primero
 
-    // Generate unique incorrect options that are multiples of the table
+    // Genera opciones incorrectas únicas que también sean múltiplos de la tabla
     while (options.size < 4) {
-        const multiplier = Math.floor(Math.random() * 10) + 1; // Random multiplier
+        const multiplier = Math.floor(Math.random() * 10) + 1;
         const option = num1 * multiplier;
         options.add(option);
     }
@@ -36,13 +41,13 @@ function generateQuestion() {
     document.getElementById('num1').textContent = num1;
     document.getElementById('num2').textContent = num2;
 
-    // Assign options to targets
+    // Asigna opciones a los círculos
     document.getElementById('target1').textContent = optionsArray[0];
     document.getElementById('target2').textContent = optionsArray[1];
     document.getElementById('target3').textContent = optionsArray[2];
     document.getElementById('target4').textContent = optionsArray[3];
 
-    document.getElementById('feedback').textContent = ''; // Clear feedback
+    document.getElementById('feedback').textContent = ''; // Limpia el feedback
 }
 
 function checkAnswer(target) {
@@ -54,16 +59,18 @@ function checkAnswer(target) {
     if (userAnswer === correctAnswer) {
         feedback.textContent = "¡Correcto!";
         feedback.style.color = "green";
-        correctSound.play(); // Play correct sound
+        correctSound.play(); // Reproduce sonido correcto
         score++;
+        correctAnswers++; // Incrementa respuestas correctas
         document.getElementById('score').textContent = `Puntaje: ${score}`;
     } else {
         feedback.textContent = "Incorrecto.";
         feedback.style.color = "red";
-        incorrectSound.play(); // Play incorrect sound
+        incorrectSound.play(); // Reproduce sonido incorrecto
+        incorrectAnswers++; // Incrementa respuestas incorrectas
     }
 
-    generateQuestion(); // Generate new question immediately
+    generateQuestion(); // Genera una nueva pregunta
 }
 
 function startTimer() {
@@ -79,13 +86,25 @@ function startTimer() {
 }
 
 function returnToMenu() {
-    clearInterval(timer); // Stop the timer
+    clearInterval(timer); // Detiene el cronómetro
     document.getElementById('gameScreen').style.display = 'none';
+    document.getElementById('resultScreen').style.display = 'none';
     document.getElementById('selectionScreen').style.display = 'flex';
 }
 
 function endGame() {
+    // Oculta la pantalla del juego
     document.getElementById('gameScreen').style.display = 'none';
-    document.getElementById('selectionScreen').style.display = 'flex';
-    alert(`¡Juego Terminado! Puntaje final: ${score}`);
+
+    // Calcula el porcentaje de aciertos
+    const totalAnswers = correctAnswers + incorrectAnswers;
+    const accuracy = totalAnswers > 0 ? Math.round((correctAnswers / totalAnswers) * 100) : 0;
+
+    // Actualiza los valores en la pantalla de resultados
+    document.getElementById('correctAnswers').textContent = correctAnswers;
+    document.getElementById('incorrectAnswers').textContent = incorrectAnswers;
+    document.getElementById('accuracy').textContent = accuracy;
+
+    // Muestra la pantalla de resultados
+    document.getElementById('resultScreen').style.display = 'flex';
 }
