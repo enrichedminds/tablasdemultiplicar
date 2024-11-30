@@ -29,26 +29,28 @@
         <div id="timer">Tiempo: 60s</div>
         <div id="score">Puntaje: 0</div>
         <h1>¿Cuánto es <span id="num1"></span> x <span id="num2"></span>?</h1>
-<div class="targets">
-    <div class="target" onclick="checkAnswer(this)" id="target1"></div>
-    <div class="target" onclick="checkAnswer(this)" id="target2"></div>
-    <div class="target" onclick="checkAnswer(this)" id="target3"></div>
-    <div class="target" onclick="checkAnswer(this)" id="target4"></div>
+        <div class="targets">
+            <div class="target" onclick="checkAnswer(this)" id="target1"></div>
+            <div class="target" onclick="checkAnswer(this)" id="target2"></div>
+            <div class="target" onclick="checkAnswer(this)" id="target3"></div>
+            <div class="target" onclick="checkAnswer(this)" id="target4"></div>
         </div>
         <p id="feedback"></p>
         <button class="back-button" onclick="returnToMenu()">Regresar al Menú</button>
     </div>
 
-<!-- Pantalla de resultados -->
-  <div id="resultScreen" style="display: none; text-align: center;">
-      <h1>Resultados Finales</h1>
-      <div id="resultDetails" style="margin-top: 20px;">
-          <p>Contestaciones Correctas: <span id="correctAnswers"></span></p>
-          <p>Contestaciones Incorrectas: <span id="incorrectAnswers"></span></p>
-          <p>Por ciento de Correctas: <span id="accuracy"></span>%</p>
-      </div>
-      <button class="back-button" onclick="returnToMenu()">Regresar al Menú</button>
-  </div>
+    <!-- Pantalla de resultados -->
+    <div id="resultScreen" style="display: none; text-align: center;">
+        <h1>Resultados Finales</h1>
+        <div id="resultDetails" style="margin-top: 20px;">
+            <p>Contestaciones Correctas: <span id="correctAnswers"></span></p>
+            <p>Contestaciones Incorrectas: <span id="incorrectAnswers"></span></p>
+            <p>Por ciento de Correctas: <span id="accuracy"></span>%</p>
+            <h2>Respuestas Incorrectas:</h2>
+            <ul id="incorrectList"></ul> <!-- Lista de respuestas incorrectas -->
+        </div>
+        <button class="back-button" onclick="returnToMenu()">Regresar al Menú</button>
+    </div>
 
     <!-- Archivos de audio -->
     <audio id="correctSound" src="https://www.soundjay.com/button/beep-07.mp3"></audio>
