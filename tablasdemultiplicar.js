@@ -1,6 +1,6 @@
 let num1, num2, correctAnswer;
 let score = 0; // Puntaje total
-let timeRemaining = 60; // Tiempo límite en segundos
+let timeRemaining = 20; // Tiempo límite en segundos
 let timer;
 let selectedTable;
 let correctAnswers = 0; // Contador de respuestas correctas
