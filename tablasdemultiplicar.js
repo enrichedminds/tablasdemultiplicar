@@ -10,7 +10,7 @@ let incorrectResponses = []; // Lista para almacenar respuestas incorrectas
 function startGame(table) {
     selectedTable = table;
     score = 0;
-    timeRemaining = 60;
+    timeRemaining = 20;
     correctAnswers = 0;
     incorrectAnswers = 0;
     incorrectResponses = []; // Reinicia respuestas incorrectas
